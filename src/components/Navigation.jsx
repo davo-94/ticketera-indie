@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-const Navigation = () => {
+const Navigation = ({ cartItemCount }) => {
     const location = useLocation();
 
     return (
@@ -41,6 +41,14 @@ const Navigation = () => {
                                 to="/registro"
                             >
                                 Registro
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className={`nav-link ${location.pathname === '/carrito' ? 'active' : ''}`} to="/carrito">
+                                Carrito
+                                {cartItemCount > 0 && (
+                                    <span className="badge bg-danger ms-1">{cartItemCount}</span>
+                                )}
                             </Link>
                         </li>
 
