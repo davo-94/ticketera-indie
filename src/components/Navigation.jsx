@@ -1,0 +1,65 @@
+
+import { Link, useLocation } from 'react-router-dom';
+
+const Navigation = ({ cartItemCount, isLoggedIn }) => {
+    const location = useLocation();
+
+    return (
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div className="container">
+                <Link className="navbar-brand" to="/">Ticketera Indie</Link>
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                >
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav ms-auto">
+                        <li className="nav-item">
+                            <Link
+                                className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
+                                to="/"
+                            >
+                                Inicio
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link
+                                className={`nav-link ${location.pathname === '/eventos' ? 'active' : ''}`}
+                                to="/eventos"
+                            >
+                                Eventos
+                            </Link>
+                        </li>
+
+                        {!isLoggedIn && (
+                            <>
+                                <li className="nav-item">
+                                    <Link className={`nav-link ${location.pathname === '/login' ? 'active' : ''}`} to="/login">Iniciar Sesión</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className={`nav-link ${location.pathname === '/registro' ? 'active' : ''}`} to="/registro">Registro</Link>
+                                </li>
+                            </>
+                        )}
+
+                        <li className="nav-item">
+                            <Link className={`nav-link ${location.pathname === '/carrito' ? 'active' : ''}`} to="/carrito">
+                                Carrito
+                                {cartItemCount > 0 && (
+                                    <span className="badge bg-danger ms-1">{cartItemCount}</span>
+                                )}
+                            </Link>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    );
+};
+
+export default Navigation;
