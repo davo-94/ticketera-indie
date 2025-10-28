@@ -1,16 +1,27 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap global
+
+// Componentes comunes
 import NavigationBar from './components/common/NavigationBar';
+import Home from './components/common/Home';
+
+// Catálogo de eventos/películas
+import EventDirectory from './components/movies/EventDirectory';
 import MovieList from './components/movies/MovieList';
 import MovieDetail from './components/movies/MovieDetail';
-import 'bootstrap/dist/css/bootstrap.min.css'; //Bootstrap global
+
+// Formulario de registro
+import RegistrationForm from './components/auth/RegistrationForm';
 
 function App() {
   return (
     <Router>
       <NavigationBar />
       <Routes>
-        <Route path ="/" element={<MovieList />} />
-        <Route path ="/pelicula/:id" elements ={<MovieDetail />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/eventos" element={<EventDirectory />} />
+        <Route path="/pelicula/:id" element={<MovieDetail />} />
+        <Route path="/registro" element={<RegistrationForm />} />
       </Routes>
     </Router>
   );
