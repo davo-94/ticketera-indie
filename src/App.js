@@ -7,9 +7,12 @@ import Home from './components/Home';
 import Navigation from './components/Navigation';
 import RegistrationForm from './components/RegistrationForm.jsx';
 import Cart from './components/Cart';
+import Login from './components/Login.jsx';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
   const handleAddToCart = (eventToAdd) => {
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === eventToAdd.id);
@@ -67,9 +70,9 @@ function App() {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        // ✅ Vaciar el carrito
+        // Vacia el carrito
         setCartItems([]);
-        // ✅ Mostrar mensaje de éxito
+        // Muestra mensaje de éxito
         Swal.fire(
           '¡Compra Exitosa!',
           'Tus tickets han sido comprados. ¡Disfruta el evento!',
@@ -79,16 +82,25 @@ function App() {
       }
     });
   };
+
+  //Funcion de Autenticación
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+
+  };
+
   return (
     <Router>
       <div className="Ticketera">
         <Navigation cartItemCount={cartItems.length} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
           <Route path="/eventos" element={<EventDirectory onAddToCart={handleAddToCart} />} />
           <Route path="/registro" element={<RegistrationForm />} />
           <Route path="/carrito" element={<Cart cartItems={cartItems}
             onRemoveFromCart={handleRemoveFromCart} onCheckout={handleCheckout} />} />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
         </Routes>
       </div>
     </Router>

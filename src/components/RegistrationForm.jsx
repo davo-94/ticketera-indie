@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'; //Importa SweetAlert2
 
 function RegistrationForm() {
+    const navigate = useNavigate();
     // Estado para manejar todos los campos del formulario en un solo objeto
     const [formData, setFormData] = useState({
         rut: '',
@@ -58,7 +60,7 @@ function RegistrationForm() {
             isValid = false;
         }
 
-        // 4. Validar Fecha de Nacimiento (Mayor de 18 años, ejemplo)
+        // Validar Fecha de Nacimiento
         if (!formData.fechaNacimiento) {
             newErrors.fechaNacimiento = 'La fecha de nacimiento es obligatoria.';
             isValid = false;
@@ -88,7 +90,7 @@ function RegistrationForm() {
             isValid = false;
         }
 
-        //  Validar Celular (Ejemplo: 9 dígitos)
+        //  Validar Celular
         const celularRegex = /^[9]\d{8}$/; // formato chileno después del +56
         if (!formData.celular.trim()) {
             newErrors.celular = 'El número de celular es obligatorio.';
@@ -133,9 +135,10 @@ function RegistrationForm() {
                 text: 'Tu cuenta ha sido creada correctamente.',
                 showConfirmButton: false,
                 timer: 2500 // El mensaje desaparecerá después de 2.5 segundos
+            }).then(() => {
+                navigate('/');
             });
-            // Aquí se podría limpiar el formulario o redirigir al usuario
-            // setFormData({ ...campos vacíos... });
+
         } else {
             // Si hay errores, muestra SweetAlert2 de error
             console.log('Errores en el formulario:', errors); // Usamos el estado 'errors'
@@ -165,7 +168,7 @@ function RegistrationForm() {
                     <div className="card shadow-sm p-4">
                         <h2 className="text-center mb-4">Crear Cuenta</h2>
                         <form onSubmit={handleSubmit} noValidate>
-                            {/* --- 1. INFORMACIÓN PERSONAL --- */}
+                            {/* --- INFORMACIÓN PERSONAL --- */}
                             <fieldset className="border p-3 mb-4">
                                 <legend className="w-auto px-2 h5">1. Información Personal</legend>
 

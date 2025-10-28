@@ -1,7 +1,7 @@
-import React from 'react';
+
 import { Link, useLocation } from 'react-router-dom';
 
-const Navigation = ({ cartItemCount }) => {
+const Navigation = ({ cartItemCount, isLoggedIn }) => {
     const location = useLocation();
 
     return (
@@ -35,14 +35,17 @@ const Navigation = ({ cartItemCount }) => {
                             </Link>
                         </li>
 
-                        <li className="nav-item">
-                            <Link
-                                className={`nav-link ${location.pathname === '/registro' ? 'active' : ''}`}
-                                to="/registro"
-                            >
-                                Registro
-                            </Link>
-                        </li>
+                        {!isLoggedIn && (
+                            <>
+                                <li className="nav-item">
+                                    <Link className={`nav-link ${location.pathname === '/login' ? 'active' : ''}`} to="/login">Iniciar Sesión</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className={`nav-link ${location.pathname === '/registro' ? 'active' : ''}`} to="/registro">Registro</Link>
+                                </li>
+                            </>
+                        )}
+
                         <li className="nav-item">
                             <Link className={`nav-link ${location.pathname === '/carrito' ? 'active' : ''}`} to="/carrito">
                                 Carrito

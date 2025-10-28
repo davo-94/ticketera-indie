@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Home = () => {
+const Home = ({ isLoggedIn }) => {
     return (
         <div className="container py-5">
             <div className="row justify-content-center">
@@ -48,7 +48,8 @@ const Home = () => {
                                 <div className="card-body">
                                     <h5 className="card-title">Mis Tickets</h5>
                                     <p className="card-text">Gestiona tus entradas y reservas.</p>
-                                    <button className="btn btn-secondary" disabled>Muy Pronto</button>
+                                    <Link to="/login" className="btn btn-primary">Ver mis Tickets</Link>
+
                                 </div>
                             </div>
                         </div>
