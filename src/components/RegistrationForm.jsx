@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Swal from 'sweetalert2'; // ✅ Importa SweetAlert2
+import Swal from 'sweetalert2'; //Importa SweetAlert2
 
 function RegistrationForm() {
     // Estado para manejar todos los campos del formulario en un solo objeto
@@ -15,7 +15,7 @@ function RegistrationForm() {
         password: ''
     });
 
-    // ✅ ESTADO PARA ERRORES
+    // ESTADO PARA ERRORES
     const [errors, setErrors] = useState({});
 
     // Función para manejar los cambios en cualquier input del formulario
@@ -25,31 +25,31 @@ function RegistrationForm() {
             ...prevState,
             [name]: value
         }));
-        // Opcional: Limpiar error del campo si el usuario empieza a escribir
+        // Limpia error del campo si el usuario empieza a escribir
         if (errors[name]) {
             setErrors(prevErrors => ({ ...prevErrors, [name]: null }));
         }
     };
 
-    // ✅ FUNCIÓN DE VALIDACIÓN DEL FORMULARIO
+    // FUNCIÓN DE VALIDACIÓN DEL FORMULARIO
     const validateForm = () => {
         let newErrors = {}; // Esta es la variable local
         let isValid = true;
 
-        // 1. Validar Nombres
+        //  Validar Nombres
         if (!formData.nombres.trim()) {
             newErrors.nombres = 'Los nombres son obligatorios.';
             isValid = false;
         }
 
-        // 2. Validar Apellidos
+        // Validar Apellidos
         if (!formData.apellidos.trim()) {
             newErrors.apellidos = 'Los apellidos son obligatorios.';
             isValid = false;
         }
 
-        // 3. Validar RUT (Ejemplo básico, puedes integrar una librería si es más compleja)
-        const rutRegex = /^\d{1,2}\.\d{3}\.\d{3}[-][0-9kK]{1}$/; // Formato XX.XXX.XXX-X o X.XXX.XXX-X
+        // Validar RUT Chileno
+        const rutRegex = /^\d{1,2}\.\d{3}\.\d{3}[-][0-9kK]{1}$/;
         if (!formData.rut.trim()) {
             newErrors.rut = 'El RUT es obligatorio.';
             isValid = false;
@@ -76,20 +76,20 @@ function RegistrationForm() {
             }
         }
 
-        // 5. Validar Género
+        // Validar Género
         if (!formData.genero) {
             newErrors.genero = 'Debes seleccionar un género.';
             isValid = false;
         }
 
-        // 6. Validar Ciudad
+        // Validar Ciudad
         if (!formData.ciudad.trim()) {
             newErrors.ciudad = 'La ciudad es obligatoria.';
             isValid = false;
         }
 
-        // 7. Validar Celular (Ejemplo: 9 dígitos)
-        const celularRegex = /^[9]\d{8}$/; // Asume formato chileno después del +56
+        //  Validar Celular (Ejemplo: 9 dígitos)
+        const celularRegex = /^[9]\d{8}$/; // formato chileno después del +56
         if (!formData.celular.trim()) {
             newErrors.celular = 'El número de celular es obligatorio.';
             isValid = false;
@@ -98,7 +98,7 @@ function RegistrationForm() {
             isValid = false;
         }
 
-        // 8. Validar Email
+        // Validar Email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!formData.email.trim()) {
             newErrors.email = 'El email es obligatorio.';
@@ -108,7 +108,7 @@ function RegistrationForm() {
             isValid = false;
         }
 
-        // 9. Validar Contraseña (Ejemplo: mínimo 6 caracteres)
+        //  Validar Contraseña
         if (!formData.password.trim()) {
             newErrors.password = 'La contraseña es obligatoria.';
             isValid = false;
@@ -121,11 +121,11 @@ function RegistrationForm() {
         return isValid;
     };
 
-    // La lógica de validación y envío se agregará aquí
+    // lógica de validación y envío
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validateForm()) { // validateForm() ya actualiza el estado 'errors'
-            // ✅ Si la validación pasa, aquí se "enviarían" los datos
+            // Si la validación pasa, aquí se "enviarían" los datos
             console.log('Formulario enviado con éxito:', formData);
             Swal.fire({
                 icon: 'success',
@@ -137,7 +137,7 @@ function RegistrationForm() {
             // Aquí se podría limpiar el formulario o redirigir al usuario
             // setFormData({ ...campos vacíos... });
         } else {
-            // ✅ Si hay errores, muestra SweetAlert2 de error
+            // Si hay errores, muestra SweetAlert2 de error
             console.log('Errores en el formulario:', errors); // Usamos el estado 'errors'
 
             // Construir una lista HTML de errores usando el estado 'errors'

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const EventDirectory = () => {
+const EventDirectory = ({ onAddToCart }) => {
     // Datos de ejemplo para eventos
     const eventsData = [
         {
@@ -104,9 +104,9 @@ const EventDirectory = () => {
 
     // Función para formatear precio
     const formatPrice = (price) => {
-        return new Intl.NumberFormat('es-AR', {
+        return new Intl.NumberFormat('es-CL', {
             style: 'currency',
-            currency: 'ARS',
+            currency: 'CLP',
             maximumFractionDigits: 0
         }).format(price);
     };
@@ -208,7 +208,8 @@ const EventDirectory = () => {
                                         </div>
                                         {/* Botón de compra */}
                                         <div className="col-12 col-md-2 text-end">
-                                            <button className="btn btn-primary">
+                                            {/* Llama a la función onAddToCart con el evento actual al hacer clic */}
+                                            <button className="btn btn-primary" onClick={() => onAddToCart(event)}>
                                                 Comprar Ticket
                                             </button>
                                         </div>
