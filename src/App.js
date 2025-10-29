@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+import './styles/theme.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap global
+
+// Componentes comunes
+import Navigation from './components/Navigation';
+import Home from './components/common/Home';
+
+// Catálogo de eventos / películas
+import EventDirectory from './components/movies/EventDirectory';
+import MovieList from './components/movies/MovieList';
+import MovieDetail from './components/movies/MovieDetail';
+
+// Formulario de registro
+import RegistrationForm from './components/auth/RegistrationForm';
+=======
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -169,6 +186,13 @@ function App() {
   return (
     <Router>
       <div className="Ticketera">
+<<<<<<< HEAD
+        <NavigationBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/eventos" element={<EventDirectory />} />
+          <Route path="/pelicula/:id" element={<MovieDetail />} />
+=======
         <Navigation cartItemCount={cartItems.length} />
         <Routes>
           <Route path="/" element={<Home isLoggedIn={isLoggedIn} events={eventsData} />} />
