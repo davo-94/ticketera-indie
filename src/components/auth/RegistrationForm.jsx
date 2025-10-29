@@ -125,7 +125,7 @@ function RegistrationForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validateForm()) { // validateForm() ya actualiza el estado 'errors'
-            // ✅ Si la validación pasa, aquí se "enviarían" los datos
+            // Si la validación pasa, aquí se "enviarían" los datos
             console.log('Formulario enviado con éxito:', formData);
             Swal.fire({
                 icon: 'success',
@@ -137,7 +137,7 @@ function RegistrationForm() {
             // Aquí se podría limpiar el formulario o redirigir al usuario
             // setFormData({ ...campos vacíos... });
         } else {
-            // ✅ Si hay errores, muestra SweetAlert2 de error
+            // Si hay errores, muestra SweetAlert2 de error
             console.log('Errores en el formulario:', errors); // Usamos el estado 'errors'
 
             // Construir una lista HTML de errores usando el estado 'errors'
