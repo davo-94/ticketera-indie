@@ -1,81 +1,6 @@
 import React, { useState } from 'react';
 
-const EventDirectory = ({ onAddToCart }) => {
-    // Datos de ejemplo para eventos
-    const eventsData = [
-        {
-            id: 1,
-            title: "Taylor Swift - The Eras Tour",
-            price: 75000,
-            description: "La gira más exitosa de todos los tiempos llega a Argentina. Un viaje musical a través de todas las eras de Taylor Swift.",
-            interested: "45.2K",
-            image: "https://via.placeholder.com/300x180?text=Taylor+Swift",
-            category: "Concierto"
-        },
-        {
-            id: 2,
-            title: "Boca vs River - Superclásico",
-            price: 45000,
-            description: "El partido más importante del fútbol argentino. La Bombonera vibra con el superclásico del fútbol sudamericano.",
-            interested: "32.1K",
-            image: "https://via.placeholder.com/300x180?text=Boca+vs+River",
-            category: "Deporte"
-        },
-        {
-            id: 3,
-            title: "Hamlet - Teatro Colón",
-            price: 28000,
-            description: "La obra maestra de Shakespeare cobra vida en el prestigioso Teatro Colón con un elenco de primer nivel.",
-            interested: "3.8K",
-            image: "https://via.placeholder.com/300x180?text=Hamlet",
-            category: "Teatro"
-        },
-        {
-            id: 4,
-            title: "Oppenheimer - IMAX",
-            price: 4500,
-            description: "La película más aclamada del año en formato IMAX. La historia del padre de la bomba atómica.",
-            interested: "12.4K",
-            image: "https://via.placeholder.com/300x180?text=Oppenheimer",
-            category: "Cine"
-        },
-        {
-            id: 5,
-            title: "Luis Miguel - Tour 2025",
-            price: 65000,
-            description: "El Sol de México regresa con un espectacular show que recorre sus mayores éxitos.",
-            interested: "28.9K",
-            image: "https://via.placeholder.com/300x180?text=Luis+Miguel",
-            category: "Concierto"
-        },
-        {
-            id: 6,
-            title: "Festival Lollapalooza 2025",
-            price: 85000,
-            description: "Tres días de música non-stop con los mejores artistas internacionales y nacionales.",
-            interested: "89.3K",
-            image: "https://via.placeholder.com/300x180?text=Lollapalooza",
-            category: "Festival"
-        },
-        {
-            id: 7,
-            title: "Copa Davis - Argentina vs España",
-            price: 35000,
-            description: "Cuartos de final de la Copa Davis. Argentina busca su segundo título en casa.",
-            interested: "15.7K",
-            image: "https://via.placeholder.com/300x180?text=Copa+Davis",
-            category: "Deporte"
-        },
-        {
-            id: 8,
-            title: "Cirque du Soleil - Nuevo Show",
-            price: 42000,
-            description: "El espectáculo más mágico del mundo presenta su nueva producción llena de acrobacias imposibles.",
-            interested: "21.6K",
-            image: "https://via.placeholder.com/300x180?text=Cirque+du+Soleil",
-            category: "Circo"
-        }
-    ];
+const EventDirectory = ({ events, onAddToCart }) => {
 
     // Estados para los filtros
     const [searchTerm, setSearchTerm] = useState('');
@@ -84,10 +9,10 @@ const EventDirectory = ({ onAddToCart }) => {
     const [sortOrder, setSortOrder] = useState('none');
 
     // Obtener categorías únicas
-    const categories = ['Todos', ...new Set(eventsData.map(event => event.category))];
+    const categories = ['Todos', ...new Set(events.map(event => event.category))];
 
     // Filtrar eventos basado en todos los criterios
-    const filteredEvents = eventsData
+    const filteredEvents = events
         .filter(event =>
             event.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
             (selectedCategory === 'Todos' || event.category === selectedCategory) &&
