@@ -1,4 +1,3 @@
-// usamos Chrome del sistema en lugar de Puppeteer
 process.env.CHROME_BIN = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 console.log('CHROME_BIN path:', process.env.CHROME_BIN);
 
@@ -20,7 +19,16 @@ module.exports = function (config) {
           {
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
-            use: { loader: 'babel-loader' }
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: [
+                  '@babel/preset-env',
+                  '@babel/preset-react'
+                ],
+                plugins: ['istanbul'] // mantiene cobertura
+              }
+            }
           },
           {
             test: /\.css$/,
@@ -29,19 +37,26 @@ module.exports = function (config) {
         ]
       },
       devtool: 'inline-source-map',
-        resolve: {
-      extensions: ['.js', '.jsx']
-    }
+      resolve: {
+        extensions: ['.js', '.jsx']
+      }
     },
 
     browsers: ['Chrome'],
-    
+
+    reporters: ['progress', 'coverage-istanbul'],
+    coverageIstanbulReporter: {
+      dir: require('path').join(__dirname, 'coverage'),
+      reports: ['html', 'text-summary'],
+      fixWebpackSourcePaths: true
+    },
 
     plugins: [
       'karma-jasmine',
       'karma-chrome-launcher',
       'karma-webpack',
-      'karma-sourcemap-loader'
+      'karma-sourcemap-loader',
+      'karma-coverage-istanbul-reporter'
     ],
 
     singleRun: false,
