@@ -1,6 +1,7 @@
 // Importaciones
 import React from 'react';
 import { act } from 'react';
+import { createRoot } from 'react-dom/client';
 import Cart from '../components/common/Cart';
 
 describe('Cart Component', () => {
@@ -41,7 +42,6 @@ describe('Cart Component', () => {
   });
 
   it('debe llamar a la función onRemoveFromCart con el ID correcto', () => {
-    // ¡CORRECCIÓN: Volvemos a usar jasmine.createSpy()!
     const mockRemoveFunction = jasmine.createSpy('onRemoveFromCart');
     const mockItems = [
       { id: 1, title: 'Entrada Festival Indie', price: 10000, quantity: 1 },
