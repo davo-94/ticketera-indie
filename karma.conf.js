@@ -6,10 +6,16 @@ module.exports = function (config) {
     basePath: '',
     frameworks: ['jasmine'],
 
-    files: ['tests.bundle.js'],
+    // ✅ Incluye setup y todos los archivos de test
+    files: [
+      'test/test-setup.js',
+      'src/**/*.spec.jsx',
+      'src/**/*.spec.js'
+    ],
 
     preprocessors: {
-      'tests.bundle.js': ['webpack', 'sourcemap']
+      'src/**/*.spec.jsx': ['webpack', 'sourcemap'],
+      'src/**/*.spec.js': ['webpack', 'sourcemap']
     },
 
     webpack: {
