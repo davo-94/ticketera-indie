@@ -1,17 +1,22 @@
+// Importaciones
 import React from 'react';
-import { createRoot } from 'react-dom/client';
 import { act } from 'react';
 import Cart from '../components/common/Cart';
 
 describe('Cart Component', () => {
   let container;
+  let root;
 
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
+    root = createRoot(container);
   });
 
   afterEach(() => {
+    act(() => {
+      root.unmount();
+    });
     document.body.removeChild(container);
     container = null;
   });
@@ -35,8 +40,9 @@ describe('Cart Component', () => {
     expect(mensaje).toContain('vacío');
   });
 
-  // PRUEBA 2: Renderizado con productos
-  it('muestra los productos cuando existen items', () => {
+  it('debe llamar a la función onRemoveFromCart con el ID correcto', () => {
+    // ¡CORRECCIÓN: Volvemos a usar jasmine.createSpy()!
+    const mockRemoveFunction = jasmine.createSpy('onRemoveFromCart');
     const mockItems = [
       { id: 1, title: 'Entrada Festival Indie', price: 10000, quantity: 1 },
       { id: 2, title: 'Concierto de Jazz', price: 8000, quantity: 1 }
