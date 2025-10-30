@@ -5,17 +5,19 @@ module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine'],
+   
 
-    // ✅ Incluye setup y todos los archivos de test
+    // Incluye setup y todos los archivos de test
     files: [
-      'test/test-setup.js',
-      'src/**/*.spec.jsx',
-      'src/**/*.spec.js'
+      { pattern: 'src/__tests__/test-setup.js', type: 'module', included: true },
+      { pattern: 'src/**/*.spec.jsx', watched: false },
+      { pattern: 'src/**/*.spec.js', watched: false }
     ],
 
     preprocessors: {
-      'src/**/*.spec.jsx': ['webpack', 'sourcemap'],
-      'src/**/*.spec.js': ['webpack', 'sourcemap']
+      'src/**/*.spec.jsx': ['webpack'],
+      'src/**/*.spec.js': ['webpack'],
+      'src/__tests__/test-setup.js': ['webpack']
     },
 
     webpack: {

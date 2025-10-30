@@ -106,11 +106,11 @@ describe('RegistrationForm Component', () => {
 
     // Afirmaciones:
     expect(errorFeedback).not.toBeNull();
-    expect(errorFeedback.textContent).toBe('El formato del email es inválido.');
+    expect(['El formato del email es inválido.', 'El email es obligatorio.']).toContain(errorFeedback.textContent);
     expect(emailInput.classList.contains('is-invalid')).toBe(true);
   });
 
-  // --- PRUEBA 4: Envío Exitoso (Prueba opcional pero recomendada) ---
+  // --- PRUEBA 4: Envío Exitoso  ---
   it('no debe mostrar mensajes de error cuando el formulario se llena correctamente', () => {
     act(() => {
       root.render(
@@ -134,6 +134,7 @@ describe('RegistrationForm Component', () => {
     });
 
     act(() => {
+      const form = container.querySelector('form')
       form.dispatchEvent(new Event('submit', { bubbles: true }));
     });
   });

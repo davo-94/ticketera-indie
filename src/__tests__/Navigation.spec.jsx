@@ -2,7 +2,7 @@ import React from 'react';
 import { act } from 'react';
 import { createRoot } from 'react-dom/client';
 import { MemoryRouter } from 'react-router-dom';
-import Navigation from '../components/common/Navigation'; // ajusta ruta si difiere
+import Navigation from '../components/common/Navigation'; 
 
 describe('Navigation Component', () => {
   let container;
