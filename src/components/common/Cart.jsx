@@ -1,7 +1,5 @@
-
 import React from 'react';
 
-// Función para formatear el precio (puedes moverla a un archivo de utilidades)
 const formatPrice = (price) => {
     return new Intl.NumberFormat('es-CL', {
         style: 'currency',
@@ -24,22 +22,34 @@ const Cart = ({ cartItems, onRemoveFromCart, onCheckout }) => {
             ) : (
                 <div className="card">
                     <ul className="list-group list-group-flush">
-                        {cartItems.map((item) => ( // No necesitamos el 'index' si el 'id' del item es único
+                        {cartItems.map((item) => (
                             <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h6 className="my-0">{item.title}</h6>
-                                    {/*  Muestra la cantidad */}
-                                    <small className="text-muted">Cantidad: {item.quantity}</small>
+                                <div className="d-flex align-items-center">
+                                    <img
+                                        src={item.image}
+                                        alt={item.title}
+                                        className="me-3 rounded"
+                                        style={{
+                                            width: '150px',
+                                            height: '120px',
+                                            objectFit: 'contain'
+                                        }}
+                                    />
+                                    <div>
+                                        <h6 className="my-0">{item.title}</h6>
+                                        {/*  Muestra la cantidad */}
+                                        <small className="text-muted">Cantidad: {item.quantity}</small>
+                                    </div>
                                 </div>
                                 <div className="d-flex align-items-center">
                                     {/* Muestra el precio total por item (precio * cantidad) */}
                                     <span className="text-muted me-3">{formatPrice(item.price * item.quantity)}</span>
-                                    {/*  BOTÓN PARA ELIMINAR */}
+
                                     <button
                                         className="btn btn-danger btn-sm"
                                         onClick={() => onRemoveFromCart(item.id)}
                                     >
-                                        &times; {/* Este es el caracter de la 'X' */}
+                                        &times;
                                     </button>
                                 </div>
                             </li>
