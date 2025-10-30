@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import EventDirectory from './components/movies/EventDirectory';
 import Home from './components/common/Home';
 import Navigation from './components/common/Navigation';
+import Footer from './components/common/Footer';
 import RegistrationForm from './components/auth/RegistrationForm.jsx';
 import Login from './components/auth/Login';
 import Cart from './components/common/Cart';
@@ -170,14 +171,17 @@ function App() {
     <Router>
       <div className="Ticketera">
         <Navigation cartItemCount={cartItems.length} />
-        <Routes>
-          <Route path="/" element={<Home isLoggedIn={isLoggedIn} events={eventsData} />} />
-          <Route path="/eventos" element={<EventDirectory events={eventsData} onAddToCart={handleAddToCart} />} />
-          <Route path="/registro" element={<RegistrationForm />} />
-          <Route path="/carrito" element={<Cart cartItems={cartItems}
-            onRemoveFromCart={handleRemoveFromCart} onCheckout={handleCheckout} />} />
-          <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        </Routes>
+        <main>
+          <Routes>
+            <Route path="/" element={<Home isLoggedIn={isLoggedIn} events={eventsData} />} />
+            <Route path="/eventos" element={<EventDirectory events={eventsData} onAddToCart={handleAddToCart} />} />
+            <Route path="/registro" element={<RegistrationForm />} />
+            <Route path="/carrito" element={<Cart cartItems={cartItems}
+              onRemoveFromCart={handleRemoveFromCart} onCheckout={handleCheckout} />} />
+            <Route path="/login" element={<Login onLogin={handleLogin} />} />
+          </Routes>
+        </main>
+        <Footer />
       </div>
     </Router>
   );
